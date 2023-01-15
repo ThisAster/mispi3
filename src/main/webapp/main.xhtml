@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:pt="http://java.sun.com/jsf/composite">
+<h:head>
+    <title>Лабораторная работа №3 по веб-программированию</title>
+    <h:outputStylesheet library="css" name="style.css" />
+    <h:outputScript library="js" name="grapher.js" target="body"/>
+</h:head>
+<h:body>
+    <div id="header">
+        <h1>
+            <span>Abulfatov</span>
+            Ruslan
+        </h1>
+        <h2>P32312, var: 66647</h2>
+    </div>
+    <div id="parameters" class="bordered">
+        <h:form id="form">
+            <div class="x-coordinate">
+                <br>
+                    <h:outputLabel value="X value:"/>
+                </br>
+                <h:selectOneRadio value="#{point.x}">
+                    <f:selectItem itemLabel="-2" itemValue="-2"/>
+                    <f:selectItem itemLabel="-1.5" itemValue="-1.5"/>
+                    <f:selectItem itemLabel="-1" itemValue="-1"/>
+                    <f:selectItem itemLabel="-0.5" itemValue="-0.5"/>
+                    <f:selectItem itemLabel="0" itemValue="0"/>
+                    <f:selectItem itemLabel="0.5" itemValue="0.5"/>
+                    <f:selectItem itemLabel="1" itemValue="1"/>
+                    <f:selectItem itemLabel="1.5" itemValue="1.5"/>
+                    <f:selectItem itemLabel="2" itemValue="2"/>
+                </h:selectOneRadio>
+                <h:inputHidden id="x"/>
+            </div>
+
+            <div class="y-coordinate">
+                <br>
+                    <h:outputLabel value="Y value:"/>
+                </br>
+                <h:inputText styleClass="inputY" value="#{point.y}" id="y" maxlength="6" validatorMessage="  Coord y: invalid input format">
+                    <f:passThroughAttribute name="placeholder" value="Значение от -5 до 5"/>
+                    <f:validateDoubleRange minimum="-5" maximum="5" id="val"/>
+                    <f:ajax execute="@this" event="keyup" render="yError"/>
+                </h:inputText>
+                <h:message for="y"/>
+            </div>
+
+            <div class="r-coordinate">
+                <br/>
+                <h:outputLabel value="R value:"/>
+                <br/>
+                <h:inputText styleClass="inputR" value="#{point.r}" id="r" maxlength="6" validatorMessage="  Coord r: invalid input format">
+                    <f:passThroughAttribute name="placeholder" value="Значение от 1 до 5"/>
+                    <f:validateDoubleRange minimum="1" maximum="5" id="val"/>
+                    <f:ajax execute="@this" event="keyup" render="rError"/>
+                </h:inputText>
+            </div>
+
+            <div class="btnSubmit">
+                <h:commandButton styleClass="classBtnSubmit" id="submit" action="#{point.submit()}" value="Submit">
+                    <f:ajax execute="form" render="table" onevent="drawPoints"/>
+                </h:commandButton>
+            </div>
+    </h:form>
+    </div>
+            <div class="canvas-container">
+                <canvas width="400px" height="400px" id="graph">
+                    <span>
+                        <h:graphicImage src="img/graph.png" alt="Task grpah" width="400" height="400"/>
+                    </span>
+                </canvas>
+            </div>
+            <div class="table">
+                <h:dataTable id="maintable" value="#{model.getReversed()}" var="a" styleClass="table-container">
+                    <h:column id="xColumn">
+                        <f:facet name="header">X</f:facet>
+                        <h:outputText value="#{a.point.x}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Y</f:facet>
+                        <h:outputText value="#{a.point.y}"/>
+                    </h:column>
+                    <h:column id="rColumn">
+                        <f:facet name="header">R</f:facet>
+                        <h:outputText value="#{a.point.r}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Current time</f:facet>
+                        <h:outputText value="#{a.getTimeStampFormatted()}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Execution time</f:facet>
+                        <h:outputText value="#{a.processTime} ms"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Was hit?</f:facet>
+                        <h:outputText value="#{a.success}"/>
+                    </h:column>
+                </h:dataTable>
+            </div>
+        <h:form>
+            <h:commandButton styleClass="btnReturn" action="#{pageNavigation.goToIndex()}" value="Return to back"/>
+        </h:form>
+
+    <img class="cat" src="/lab3_web-1.0-SNAPSHOT/resources/img/cat.gif" alt="pussy"/>
+</h:body>
+</html>
