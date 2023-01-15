@@ -1,12 +1,17 @@
 package beans;
 
-import jakarta.annotation.ManagedBean;
 import jakarta.enterprise.context.ApplicationScoped;
+
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
-import lombok.*;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.io.Serializable;
+
 import java.time.Instant;
 
 

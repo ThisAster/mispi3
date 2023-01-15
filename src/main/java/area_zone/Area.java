@@ -1,6 +1,7 @@
 package area_zone;
 
 import beans.Point;
+
 import lombok.Data;
 
 import java.io.Serializable;

@@ -1,15 +1,16 @@
 package beans;
 
 import jakarta.enterprise.context.ApplicationScoped;
+
 import jakarta.inject.Named;
-import jakarta.transaction.Transactional;
-import lombok.Getter;
-import lombok.Setter;
+
 import util.Connector;
 
 import java.io.Serializable;
+
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.TimeZone;

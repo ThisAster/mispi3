@@ -1,11 +1,14 @@
 package beans;
 
 import jakarta.enterprise.context.ApplicationScoped;
+
 import jakarta.inject.Named;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
 import util.CustomFormatter;
 
 import java.time.Instant;
