@@ -6,6 +6,7 @@ import jakarta.inject.Singleton;
 @Named
 @Singleton
 public class PageNavigation {
+
     public String goToMain() {
         return "go";
     }
@@ -13,4 +14,5 @@ public class PageNavigation {
     public String goToIndex() {
         return "go";
     }
+
 }

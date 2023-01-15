@@ -16,6 +16,7 @@ import java.time.ZoneId;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PointAttempt {
+
     private double x;
     private double y;
     private double r;

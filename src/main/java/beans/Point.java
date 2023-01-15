@@ -15,6 +15,7 @@ import java.time.Instant;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Point implements Serializable {
+
     @Inject
     transient private AreaChecker areaChecker;
     @Getter @Setter

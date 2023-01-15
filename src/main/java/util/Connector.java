@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 
 public class Connector {
+
     private static final String DB_URL = "jdbc:postgresql://pg:5432/studs";
     private static final String USER = "s338879";
     private static final String PASS = "7emn2ZsjgX2BaLq4";
@@ -63,4 +64,5 @@ public class Connector {
             sm.execute("CREATE SEQUENCE IF NOT EXISTS id_generator START 1 MINVALUE 1 MAXVALUE 2147483647;");
         }
     }
+
 }

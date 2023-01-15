@@ -18,4 +18,5 @@ public class AreaChecker implements Serializable {
     public boolean checkPoint(Point point) {
         return area.cheakAreaDecorate(point);
     }
+
 }

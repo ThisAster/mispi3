@@ -17,7 +17,10 @@ import java.util.TimeZone;
 @Named
 @ApplicationScoped
 public class Model implements Serializable {
+
     private ArrayList<PointAttempt> data = new ArrayList<>();
+    private ZoneId zoneId = ZonedDateTime.now().getZone();
+    String timezoneOffset;
 
     public String getTimezoneOffset() {
         return timezoneOffset;
@@ -27,14 +30,10 @@ public class Model implements Serializable {
         this.timezoneOffset = timezoneOffset;
     }
 
-    String timezoneOffset;
-
     public void add(PointAttempt attempt){
         data.add(attempt);
         Connector.getInstance().makeBigAdd(attempt);
     }
-
-    private ZoneId zoneId = ZonedDateTime.now().getZone();
 
     public ArrayList<PointAttempt> get() {
         return new ArrayList<>(data);
