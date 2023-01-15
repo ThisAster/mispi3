@@ -19,12 +19,12 @@
         <h2>P32312, var: 66647</h2>
     </div>
     <div id="parameters" class="bordered">
-        <h:form id="form">
+        <h:form id="formParameters">
             <div class="x-coordinate">
                 <br>
                     <h:outputLabel value="X value:"/>
                 </br>
-                <h:selectOneRadio value="#{point.x}">
+                <h:selectOneRadio id="x" value="#{point.x}">
                     <f:selectItem itemLabel="-2" itemValue="-2"/>
                     <f:selectItem itemLabel="-1.5" itemValue="-1.5"/>
                     <f:selectItem itemLabel="-1" itemValue="-1"/>
@@ -35,30 +35,22 @@
                     <f:selectItem itemLabel="1.5" itemValue="1.5"/>
                     <f:selectItem itemLabel="2" itemValue="2"/>
                 </h:selectOneRadio>
-                <h:inputHidden id="x"/>
             </div>
 
             <div class="y-coordinate">
                 <br>
                     <h:outputLabel value="Y value:"/>
                 </br>
-                <h:inputText styleClass="inputY" value="#{point.y}" id="y" maxlength="6" validatorMessage="  Coord y: invalid input format">
-                    <f:passThroughAttribute name="placeholder" value="Значение от -5 до 5"/>
-                    <f:validateDoubleRange minimum="-5" maximum="5" id="val"/>
-                    <f:ajax execute="@this" event="keyup" render="yError"/>
-                </h:inputText>
-                <h:message for="y"/>
+                <h:inputText styleClass="inputY" value="#{point.y}" id="y" maxlength="6" required="true"/>
+                <div id="y_messageError"></div>
             </div>
 
             <div class="r-coordinate">
                 <br/>
-                <h:outputLabel value="R value:"/>
+                    <h:outputLabel value="R value:"/>
                 <br/>
-                <h:inputText styleClass="inputR" value="#{point.r}" id="r" maxlength="6" validatorMessage="  Coord r: invalid input format">
-                    <f:passThroughAttribute name="placeholder" value="Значение от 1 до 5"/>
-                    <f:validateDoubleRange minimum="1" maximum="5" id="val"/>
-                    <f:ajax execute="@this" event="keyup" render="rError"/>
-                </h:inputText>
+                <h:inputText styleClass="inputR" value="#{point.r}" id="r" maxlength="6" required="true"/>
+                <div id="r_messageError"></div>
             </div>
 
             <div class="btnSubmit">
@@ -66,6 +58,7 @@
                     <f:ajax execute="form" render="table" onevent="drawPoints"/>
                 </h:commandButton>
             </div>
+
     </h:form>
     </div>
             <div class="canvas-container">
@@ -75,6 +68,7 @@
                     </span>
                 </canvas>
             </div>
+
             <div class="table">
                 <h:dataTable id="maintable" value="#{model.getReversed()}" var="a" styleClass="table-container">
                     <h:column id="xColumn">
@@ -103,7 +97,8 @@
                     </h:column>
                 </h:dataTable>
             </div>
-        <h:form>
+
+        <h:form id="formBtnReturn">
             <h:commandButton styleClass="btnReturn" action="#{pageNavigation.goToIndex()}" value="Return to back"/>
         </h:form>
 
