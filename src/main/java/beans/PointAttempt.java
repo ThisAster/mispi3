@@ -1,18 +1,18 @@
 package beans;
 
+import util.CustomFormatter;
+
 import jakarta.enterprise.context.ApplicationScoped;
 
 import jakarta.inject.Named;
+
+import java.time.Instant;
+import java.time.ZoneId;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import util.CustomFormatter;
-
-import java.time.Instant;
-import java.time.ZoneId;
 
 @Named("attempt")
 @ApplicationScoped

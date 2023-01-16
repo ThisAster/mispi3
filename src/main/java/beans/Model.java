@@ -1,16 +1,10 @@
 package beans;
 
+import util.Connector;
+
 import jakarta.enterprise.context.ApplicationScoped;
 
 import jakarta.inject.Named;
-
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-import util.Connector;
-
-import java.io.Serializable;
 
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -18,6 +12,12 @@ import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.TimeZone;
+
+import java.io.Serializable;
+
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Named
 @ApplicationScoped

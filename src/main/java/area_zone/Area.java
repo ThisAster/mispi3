@@ -2,9 +2,9 @@ package area_zone;
 
 import beans.Point;
 
-import lombok.Data;
-
 import java.io.Serializable;
+
+import lombok.Data;
 
 @Data
 public abstract class Area implements Serializable {
