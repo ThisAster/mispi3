@@ -55,8 +55,6 @@ public class Parameters implements Serializable {
             model.add(attempt);
             System.out.println(attempt);
         }
-
-
     }
 
 }
