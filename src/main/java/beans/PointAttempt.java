@@ -20,9 +20,6 @@ import lombok.Setter;
 @AllArgsConstructor
 public class PointAttempt {
 
-    private double x;
-    private double y;
-    private double r;
     @Setter @Getter
     private Instant attemptTime;
     @Setter @Getter
@@ -32,15 +29,8 @@ public class PointAttempt {
     @Setter @Getter
     private boolean success;
 
-    public void setPoint(Point point) {
-        x = point.getX();
-        y = point.getY();
-        r = point.getR();
-    }
-
-    public Point getPoint() {
-        return new Point(x, y, r);
-    }
+    @Setter @Getter
+    private Point point;
 
     public String getTimeStampFormatted() {
         return attemptTime.atZone(zoneId).format(CustomFormatter.getFormatterAtOffset(zoneId));

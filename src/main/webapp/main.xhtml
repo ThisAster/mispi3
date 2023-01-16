@@ -24,7 +24,7 @@
                 <br>
                     <h:outputLabel value="X value:"/>
                 </br>
-                <h:selectOneRadio id="x" value="#{point.x}">
+                <h:selectOneRadio id="x" value="#{parameters.x}">
                     <f:selectItem itemLabel="-2" itemValue="-2"/>
                     <f:selectItem itemLabel="-1.5" itemValue="-1.5"/>
                     <f:selectItem itemLabel="-1" itemValue="-1"/>
@@ -41,20 +41,25 @@
                 <br>
                     <h:outputLabel value="Y value:"/>
                 </br>
-                <h:inputText styleClass="inputY" value="#{point.y}" id="y" maxlength="6" required="true"/>
+                <h:inputText styleClass="inputY" value="#{parameters.y}" id="y" maxlength="6" required="true"/>
                 <div id="y_messageError"></div>
             </div>
 
             <div class="r-coordinate">
                 <br/>
-                    <h:outputLabel value="R value:"/>
+                    <h:outputLabel value="R values:"/>
                 <br/>
-                <h:inputText styleClass="inputR" value="#{point.r}" id="r" maxlength="6" required="true"/>
-                <div id="r_messageError"></div>
+                <h:selectManyCheckbox value="#{parameters.rs}" id="rs">
+                    <f:selectItem itemValue="1" itemLabel="1"/>
+                    <f:selectItem itemValue="2" itemLabel="2"/>
+                    <f:selectItem itemValue="3" itemLabel="3"/>
+                    <f:selectItem itemValue="4" itemLabel="4"/>
+                    <f:selectItem itemValue="5" itemLabel="5"/>
+                </h:selectManyCheckbox>
             </div>
 
             <div class="btnSubmit">
-                <h:commandButton styleClass="classBtnSubmit" id="submit" action="#{point.submit()}" value="Submit">
+                <h:commandButton styleClass="classBtnSubmit" id="submit" action="#{parameters.submit()}" value="Submit">
                     <f:ajax execute="form" render="table" onevent="drawPoints"/>
                 </h:commandButton>
             </div>
@@ -70,30 +75,30 @@
             </div>
 
             <div class="table">
-                <h:dataTable id="maintable" value="#{model.getReversed()}" var="a" styleClass="table-container">
+                <h:dataTable id="maintable" value="#{model.getReversed()}" var="pointAttempt" styleClass="table-container">
                     <h:column id="xColumn">
                         <f:facet name="header">X</f:facet>
-                        <h:outputText value="#{a.point.x}"/>
+                        <h:outputText value="#{pointAttempt.point.x}"/>
                     </h:column>
                     <h:column>
                         <f:facet name="header">Y</f:facet>
-                        <h:outputText value="#{a.point.y}"/>
+                        <h:outputText value="#{pointAttempt.point.y}"/>
                     </h:column>
                     <h:column id="rColumn">
                         <f:facet name="header">R</f:facet>
-                        <h:outputText value="#{a.point.r}"/>
+                        <h:outputText value="#{pointAttempt.point.r}"/>
                     </h:column>
                     <h:column>
                         <f:facet name="header">Current time</f:facet>
-                        <h:outputText value="#{a.getTimeStampFormatted()}"/>
+                        <h:outputText value="#{pointAttempt.getTimeStampFormatted()}"/>
                     </h:column>
                     <h:column>
                         <f:facet name="header">Execution time</f:facet>
-                        <h:outputText value="#{a.processTime} ms"/>
+                        <h:outputText value="#{pointAttempt.processTime} ms"/>
                     </h:column>
                     <h:column>
                         <f:facet name="header">Was hit?</f:facet>
-                        <h:outputText value="#{a.success}"/>
+                        <h:outputText value="#{pointAttempt.success}"/>
                     </h:column>
                 </h:dataTable>
             </div>
