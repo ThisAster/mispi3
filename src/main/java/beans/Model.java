@@ -4,6 +4,9 @@ import jakarta.enterprise.context.ApplicationScoped;
 
 import jakarta.inject.Named;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import util.Connector;
 
 import java.io.Serializable;
@@ -17,21 +20,15 @@ import java.util.TimeZone;
 
 @Named
 @ApplicationScoped
+@NoArgsConstructor
 public class Model implements Serializable {
 
     private ArrayList<PointAttempt> data = new ArrayList<>();
     private ZoneId zoneId = ZonedDateTime.now().getZone();
+    @Getter @Setter
     String timezoneOffset;
 
-    public String getTimezoneOffset() {
-        return timezoneOffset;
-    }
-
-    public void setTimezoneOffset(String timezoneOffset) {
-        this.timezoneOffset = timezoneOffset;
-    }
-
-    public void add(PointAttempt attempt){
+    public void add(PointAttempt attempt) {
         data.add(attempt);
         Connector.getInstance().makeBigAdd(attempt);
     }
@@ -40,7 +37,7 @@ public class Model implements Serializable {
         return new ArrayList<>(data);
     }
 
-    public void timezoneChangedListener(){
+    public void timezoneChangedListener() {
         String strFromJavaScript = getTimezoneOffset();
         TimeZone tz = TimeZone.getTimeZone("GMT+" + strFromJavaScript);
         zoneId = tz.toZoneId();

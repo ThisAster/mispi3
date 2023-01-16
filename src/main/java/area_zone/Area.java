@@ -12,7 +12,7 @@ public abstract class Area implements Serializable {
     protected boolean cheakArea(Point point) {
         return false;
     }
-    public boolean cheakAreaDecorate(Point point){
+    public boolean cheakAreaDecorate(Point point) {
         Area decorate = nextDecorator;
         if(cheakArea(point)) return true;
         while (decorate != null){
@@ -27,7 +27,7 @@ public abstract class Area implements Serializable {
             return;
         }
         Area decorate = nextDecorator;
-        while (decorate.nextDecorator != null){
+        while (decorate.nextDecorator != null) {
             decorate= decorate.nextDecorator;
         }
         decorate.nextDecorator = area;

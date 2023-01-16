@@ -23,14 +23,14 @@ public class Point implements Serializable {
 
     @Inject
     transient private AreaChecker areaChecker;
+    @Inject
+    transient private Model model;
     @Getter @Setter
     private double x;
     @Getter @Setter
     private double y;
     @Getter @Setter
     private double r;
-    @Getter @Setter @Inject
-    private Model model;
 
     public Point(double x, double y, double r) {
         this.x = x;
