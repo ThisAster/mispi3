@@ -3,12 +3,13 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:pt="http://java.sun.com/jsf/composite">
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
     <title>Лабораторная работа №3 по веб-программированию</title>
     <h:outputStylesheet library="css" name="style.css" />
     <h:outputScript library="js" name="grapher.js" target="body"/>
+    <h:outputScript library="js" name="validation.js" target="body"/>
+    <h:outputScript library="js" name="jquery-3.6.3.min.js" target="head"/>
 </h:head>
 <h:body>
     <div id="header">
@@ -41,7 +42,7 @@
                 <br>
                     <h:outputLabel value="Y value:"/>
                 </br>
-                <h:inputText styleClass="inputY" value="#{parameters.y}" id="y" maxlength="6" required="true"/>
+                <h:inputText styleClass="inputY" value="#{parameters.y}" onkeyup="validateY(this)" id="y" maxlength="6" required="true" autocomplete="off"/>
                 <div id="y_messageError"></div>
             </div>
 
@@ -49,13 +50,14 @@
                 <br/>
                     <h:outputLabel value="R values:"/>
                 <br/>
-                <h:selectManyCheckbox value="#{parameters.rs}" id="rs">
+                <h:selectManyCheckbox value="#{parameters.rs}" id="rs" onchange="validateR()">
                     <f:selectItem itemValue="1" itemLabel="1"/>
                     <f:selectItem itemValue="2" itemLabel="2"/>
                     <f:selectItem itemValue="3" itemLabel="3"/>
                     <f:selectItem itemValue="4" itemLabel="4"/>
                     <f:selectItem itemValue="5" itemLabel="5"/>
                 </h:selectManyCheckbox>
+                <div id="r_messageError"></div>
             </div>
 
             <div class="btnSubmit">

@@ -1,5 +1,4 @@
 const canvas = document.getElementById("graph");
-const FLOAT_REGEX = /^-?\d+(?:\.\d+)?$/;
 
 
 

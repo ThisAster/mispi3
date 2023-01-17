@@ -209,3 +209,10 @@ body {
     width: 170px;
     top: 10px;
 }
+
+
+#y_messageError, #r_messageError {
+    margin-top: 15px;
+    color: red;
+    position: absolute;
+}
