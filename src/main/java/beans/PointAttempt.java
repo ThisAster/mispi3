@@ -9,6 +9,8 @@ import jakarta.inject.Named;
 import java.time.Instant;
 import java.time.ZoneId;
 
+import java.io.Serializable;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,7 +20,7 @@ import lombok.Setter;
 @ApplicationScoped
 @NoArgsConstructor
 @AllArgsConstructor
-public class PointAttempt {
+public class PointAttempt implements Serializable {
 
     @Setter @Getter
     private Instant attemptTime;

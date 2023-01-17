@@ -2,6 +2,7 @@ package beans;
 
 import jakarta.enterprise.context.ApplicationScoped;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,6 +11,7 @@ import java.io.Serializable;
 
 @ApplicationScoped
 @NoArgsConstructor
+@AllArgsConstructor
 public class Point implements Serializable {
 
     @Getter @Setter
@@ -18,11 +20,5 @@ public class Point implements Serializable {
     private double y;
     @Getter @Setter
     private double r;
-
-    public Point(double x, double y, double r) {
-        this.x = x;
-        this.y = y;
-        this.r = r;
-    }
 
 }
