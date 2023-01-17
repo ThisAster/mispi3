@@ -1,7 +1,6 @@
 const FLOAT_REGEX = /^[+-]?([0-9]*[.])?[0-9]+$/;
 function validationFloat(strFloat) {
     return FLOAT_REGEX.test(strFloat);
-
 }
 
 let yIsValid = false;
@@ -10,9 +9,10 @@ let rIsValid = false;
 function validateY() {
 
     const element = document.getElementById('formParameters:y');
+
     if (!element) {
         yIsValid =false;
-        return ;
+        return;
     }
 
     const errorBox = document.getElementById('y_messageError')
@@ -75,6 +75,7 @@ function validateR() {
 
     errorBox.innerText = '';
     rIsValid = true;
+
     if (yIsValid) {
         button.disabled = false;
     }
