@@ -31,7 +31,7 @@ function validateY() {
     if (y < -5) {
         errorBox.innerText = 'y should be greater than -5';
         button.disabled = true;
-        yIsValid =false;
+        yIsValid = false;
         return;
     }
 
