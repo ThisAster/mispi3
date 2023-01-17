@@ -1,6 +1,6 @@
 # Лабораторная работа #3
 ## Вариант: 66647
-![graph_description](./resources/img/graph_description.png)
+![graph_description](./graph_description.png)
 
 Разработать приложение на базе JavaServer Faces Framework, которое осуществляет проверку попадания точки в заданную область на координатной плоскости.
 
