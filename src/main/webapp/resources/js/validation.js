@@ -6,6 +6,7 @@ function validationFloat(strFloat) {
 
 let yIsValid = false;
 let rIsValid = false;
+
 function validateY() {
 
     const element = document.getElementById('formParameters:y');
@@ -36,7 +37,7 @@ function validateY() {
     if (y > 5) {
         errorBox.innerText = 'y should be less than 5';
         button.disabled = true;
-        yIsValid =false;
+        yIsValid = false;
         return;
     }
 
@@ -74,7 +75,7 @@ function validateR() {
 
     errorBox.innerText = '';
     rIsValid = true;
-    if(yIsValid){
+    if (yIsValid) {
         button.disabled = false;
     }
 }
