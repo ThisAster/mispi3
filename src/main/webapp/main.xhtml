@@ -9,6 +9,7 @@
     <h:outputStylesheet library="css" name="style.css" />
     <h:outputScript library="js" name="grapher.js" target="body"/>
     <h:outputScript library="js" name="validation.js" target="body"/>
+    <h:outputScript library="js" name="timeZone.js" target="body"/>
     <h:outputScript library="js" name="jquery-3.6.3.min.js" target="head"/>
 </h:head>
 <h:body>
@@ -19,6 +20,11 @@
         </h1>
         <h2>P32312, var: 66647</h2>
     </div>
+    <h:form prependId="false">
+        <h:inputText id="bigTZ" style="visibility: hidden" value="#{model.timezoneOffset}">
+            <f:ajax listener="#{model.timezoneChangedListener}"/>
+        </h:inputText>
+    </h:form>
     <div id="parameters" class="bordered">
         <h:form id="formParameters">
             <div class="x-coordinate">
