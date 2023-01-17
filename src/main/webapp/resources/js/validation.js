@@ -12,7 +12,7 @@ function validateY() {
     const element = document.getElementById('formParameters:y');
 
     if (!element) {
-        yIsValid =false;
+        yIsValid = false;
         return;
     }
 
@@ -22,7 +22,7 @@ function validateY() {
     if (!validationFloat(element.value)) {
         errorBox.innerText = 'y should be a number';
         button.disabled = true;
-        yIsValid =false;
+        yIsValid = false;
         return;
     }
 
