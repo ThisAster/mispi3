@@ -1,4 +1,5 @@
 const FLOAT_REGEX = /^[+-]?([0-9]*[.])?[0-9]+$/;
+
 function validationFloat(strFloat) {
     return FLOAT_REGEX.test(strFloat);
 }

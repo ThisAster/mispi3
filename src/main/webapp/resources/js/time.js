@@ -1,4 +1,5 @@
 const clock = document.getElementById("interactive_time");
+
 function update_clock() {
     let date = new Date();
     clock.innerHTML = date.toLocaleString("ru-RU", {
