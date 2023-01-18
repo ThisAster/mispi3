@@ -156,8 +156,6 @@ body {
     width: 820px;
 }
 
-
-
 .table .table-container th {
     border:solid 1px #000;
     width:40px;
@@ -178,7 +176,6 @@ body {
     height:50px;
     text-align: center;
 }
-
 
 .btnReturn {
     width:150px;
@@ -209,7 +206,6 @@ body {
     width: 170px;
     top: 10px;
 }
-
 
 #y_messageError, #r_messageError {
     margin-top: 15px;

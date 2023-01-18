@@ -16,4 +16,5 @@ public class RectangleArea extends Area {
         return ((point.getX() >= 0 && point.getX() <= point.getR()) &&
                 (point.getY() >= 0 && (point.getY() <= point.getR() / 2)));
     }
+
 }

@@ -48,7 +48,9 @@
                 <br>
                     <h:outputLabel value="Y value:"/>
                 </br>
-                <h:inputText styleClass="inputY" value="#{parameters.y}" onkeyup="validateY()" id="y" maxlength="6" required="true" autocomplete="off"/>
+                <h:inputText styleClass="inputY" value="#{parameters.y}" onkeyup="validateY()" id="y" maxlength="6" required="true" autocomplete="off">
+                    <f:passThroughAttribute name="placeholder" value="Значение от -5 до 5"/>
+                </h:inputText>
                 <div id="y_messageError"></div>
             </div>
 

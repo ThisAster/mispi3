@@ -9,9 +9,11 @@ import lombok.Data;
 @Data
 public abstract class Area implements Serializable {
     private Area nextDecorator;
+
     protected boolean cheakArea(Point point) {
         return false;
     }
+
     public boolean cheakAreaDecorate(Point point) {
         Area decorate = nextDecorator;
         if(cheakArea(point)) return true;
@@ -21,6 +23,7 @@ public abstract class Area implements Serializable {
         }
         return false;
     }
+
     public void addArea(Area area) {
         if(nextDecorator == null){
             setNextDecorator(area);
@@ -31,6 +34,6 @@ public abstract class Area implements Serializable {
             decorate= decorate.nextDecorator;
         }
         decorate.nextDecorator = area;
-
     }
+
 }
