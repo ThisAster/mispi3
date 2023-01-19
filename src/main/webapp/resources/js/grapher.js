@@ -4,6 +4,8 @@ inputId ='j_idt19:r'
 const width = canvas.width;
 const height = canvas.height;
 const ctx = canvas.getContext("2d");
+const points = [];
+
 function runGrapher() {
 
     const FIGURE_COLOR = "#567efb99";
@@ -67,17 +69,25 @@ function runGrapher() {
             ctx.fillText(labels[i - 1], width / 2 + 7, height - (i * height) / 6);
         }
 
+        const attempts = getAttempts();
 
-        points.forEach((v) => {
-            const r = getR();
-            const x = v.x / r * width / 3 + width / 2;
-            const y = -v.y / r * height / 3 + height / 2;
+        const maxR = Math.max(...attempts.map(p => p.r));
 
-            ctx.fillStyle = (v.success ? '#2b6af3' : '#dc3545');
+        const chartLabel = document.getElementsByClassName('chart-label')[0];
+        chartLabel.innerText = 'R = ' + maxR;
+        attempts.forEach((attempt) => {
+
+            const k = attempt.r / maxR;
+            const x = attempt.x / maxR * k * width / 3 + width / 2;
+            const y = -attempt.y / maxR * k * height / 3 + height / 2;
+
+            ctx.fillStyle = (attempt.hit ? '#11ff11' : '#ff3333');
             ctx.beginPath();
             ctx.arc(x, y, 5, 0, Math.PI * 2);
             ctx.fill();
         });
+
+
     }
 
     return {
@@ -86,3 +96,58 @@ function runGrapher() {
 }
 
 runGrapher().drawGraph();
+
+function getAttempts(){
+    const attempts = [];
+    $('#maintable tbody tr').each(function(){
+        const tr = this;
+        if(tr.cells.length < 6){
+            return;
+        }
+        const x = Number(tr.cells[0].innerText);
+        const y = Number(tr.cells[1].innerText);
+        const r = Number(tr.cells[2].innerText);
+        const hit = tr.cells[5].innerText == "true";
+        attempts.push({x,y,r,hit});
+    })
+    return attempts;
+}
+
+
+canvas.addEventListener('click', (e) => {
+
+    let rsSelectedNumber = 0;
+    let r = null;
+    $('#formParameters\\:rs input').each(function(index) {
+        const input = this;
+        if (input.checked) {
+            rsSelectedNumber++
+            r = input.innerText;
+        }
+    });
+
+    if (rsSelectedNumber != 1) {
+        alert("Please select the only one value for R first");
+        return;
+    }
+
+    const xClicked =
+        Math.round(((2 * e.offsetX) / width - 1) * r * 1.5 * 100) / 100;
+    const yClicked =
+        Math.round(((-2 * e.offsetY) / height + 1) * r * 1.5 * 100) / 100;
+
+
+
+    const yInput = document.getElementById('formParameters:y');
+    yInput.value = yClicked;
+
+    $('#formParameters\\:x input').each(function(index) {
+        const input = this;
+        if (input.value == xClicked) {
+            rsSelectedNumber++
+            r = input.innerText;
+        }
+    });
+
+    document.forms["formParameters"].submit();
+});

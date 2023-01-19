@@ -70,13 +70,15 @@
 
             <div class="btnSubmit">
                 <h:commandButton styleClass="classBtnSubmit" id="submit" action="#{parameters.submit()}" value="Submit">
-                    <f:ajax execute="form" render="table" onevent="drawPoints"/>
                 </h:commandButton>
             </div>
 
     </h:form>
     </div>
             <div class="canvas-container">
+                <div class="chart-label">
+                    R = ?
+                </div>
                 <canvas width="400px" height="400px" id="graph">
                     <span>
                         <h:graphicImage src="img/graph.png" alt="Task grpah" width="400" height="400"/>

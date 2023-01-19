@@ -143,6 +143,13 @@ body {
     width: 500px;
     left: 508px;
     bottom: 473px;
+
+}
+
+.chart-label{
+    position: absolute;
+    left: 50px;
+    top: 5px;
 }
 
 .table .table-container {
