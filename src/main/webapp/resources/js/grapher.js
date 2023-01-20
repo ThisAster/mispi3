@@ -71,21 +71,38 @@ function runGrapher() {
 
         const attempts = getAttempts();
 
-        const maxR = Math.max(...attempts.map(p => p.r));
+        let maxR = -1
+
+        $('#formParameters\\:rs input').each(function(index) {
+            const input = this;
+            if (input.checked) {
+                const r = input.value;
+                if(r > maxR){
+                    maxR = r;
+                }
+            }
+        });
 
         const chartLabel = document.getElementsByClassName('chart-label')[0];
-        chartLabel.innerText = 'R = ' + maxR;
-        attempts.forEach((attempt) => {
+        const rText = maxR == -1 ? 'not set' : maxR;
+        chartLabel.innerText = 'R = ' + rText;
 
-            const k = attempt.r / maxR;
-            const x = attempt.x / maxR * k * width / 3 + width / 2;
-            const y = -attempt.y / maxR * k * height / 3 + height / 2;
+        if(maxR > -1){
 
-            ctx.fillStyle = (attempt.hit ? '#11ff11' : '#ff3333');
-            ctx.beginPath();
-            ctx.arc(x, y, 5, 0, Math.PI * 2);
-            ctx.fill();
-        });
+            attempts.forEach((attempt) => {
+
+                const k = attempt.r / maxR;
+                const x = attempt.x / maxR * k * width / 3 + width / 2;
+                const y = -attempt.y / maxR * k * height / 3 + height / 2;
+
+                ctx.fillStyle = (attempt.hit ? '#11ff11' : '#ff3333');
+                ctx.beginPath();
+                ctx.arc(x, y, 5, 0, Math.PI * 2);
+                ctx.fill();
+            });
+        }
+
+
 
 
     }
@@ -104,6 +121,10 @@ function getAttempts(){
         if(tr.cells.length < 6){
             return;
         }
+
+        if(tr.cells[0].innerText === '' || tr.cells[0].innerText === null || tr.cells[0].innerText === undefined){
+            return;
+        }
         const x = Number(tr.cells[0].innerText);
         const y = Number(tr.cells[1].innerText);
         const r = Number(tr.cells[2].innerText);
@@ -114,6 +135,15 @@ function getAttempts(){
 }
 
 
+$('#formParameters\\:submit').on( "click", () => {
+    setTimeout(() => {
+        runGrapher().drawGraph();
+    }, 200)
+})
+
+$('#formParameters\\:rs input').on( "click", () => {
+    runGrapher().drawGraph();
+})
 canvas.addEventListener('click', (e) => {
 
     let rsSelectedNumber = 0;
@@ -122,7 +152,7 @@ canvas.addEventListener('click', (e) => {
         const input = this;
         if (input.checked) {
             rsSelectedNumber++
-            r = input.innerText;
+            r = input.value;
         }
     });
 
@@ -141,13 +171,15 @@ canvas.addEventListener('click', (e) => {
     const yInput = document.getElementById('formParameters:y');
     yInput.value = yClicked;
 
-    $('#formParameters\\:x input').each(function(index) {
-        const input = this;
-        if (input.value == xClicked) {
-            rsSelectedNumber++
-            r = input.innerText;
-        }
-    });
+    const hiddenInputX = $('#formParameters\\:hiddenX').last()[0];
 
-    document.forms["formParameters"].submit();
+    hiddenInputX.value = xClicked;
+
+    $('#formParameters\\:submit')[0].click()
+
+
+    setTimeout(() => {
+        hiddenInputX.value = 0;
+        runGrapher().drawGraph();
+    }, 100)
 });

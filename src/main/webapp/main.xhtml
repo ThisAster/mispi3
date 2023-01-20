@@ -26,7 +26,7 @@
         </h:inputText>
     </h:form>
     <div id="parameters" class="bordered">
-        <h:form id="formParameters">
+        <h:form id="formParameters" action="#{parameters.submit()}">
             <div class="x-coordinate">
                 <br>
                     <h:outputLabel value="X value:"/>
@@ -42,6 +42,7 @@
                     <f:selectItem itemLabel="1.5" itemValue="1.5"/>
                     <f:selectItem itemLabel="2" itemValue="2"/>
                 </h:selectOneRadio>
+                <h:inputHidden id="hiddenX" value="${parameters.hiddenX}"/>
             </div>
 
             <div class="y-coordinate">
@@ -69,7 +70,8 @@
             </div>
 
             <div class="btnSubmit">
-                <h:commandButton styleClass="classBtnSubmit" id="submit" action="#{parameters.submit()}" value="Submit">
+                <h:commandButton type="submit" styleClass="classBtnSubmit" id="submit" value="Submit">
+                    <f:ajax execute="@form" render="maintable" listener="#{parameters.submit()}"/>
                 </h:commandButton>
             </div>
 

@@ -27,6 +27,8 @@ public class Parameters implements Serializable {
     @Getter @Setter
     private double x;
     @Getter @Setter
+    private double hiddenX;
+    @Getter @Setter
     private double y;
     @Getter @Setter
     private double[] rs;
@@ -40,8 +42,8 @@ public class Parameters implements Serializable {
     public void submit() {
 
         for (double r: rs) {
-
-            Point point = new Point(x, y, r);
+            double xToUse = hiddenX != 0 ? hiddenX : x;
+            Point point = new Point(xToUse, y, r);
 
             final long start = System.nanoTime();
 
