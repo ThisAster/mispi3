@@ -4,6 +4,8 @@ const width = canvas.width;
 const height = canvas.height;
 const ctx = canvas.getContext("2d");
 
+const hiddenInputX = $('#formParameters\\:hiddenX').last()[0];
+
 function runGrapher() {
 
     const FIGURE_COLOR = "#567efb99";
@@ -112,7 +114,7 @@ function runGrapher() {
 
 runGrapher().drawGraph();
 
-function getAttempts(){
+function getAttempts() {
     const attempts = [];
     $('#maintable tbody tr').each(function() {
         const tr = this;
@@ -123,6 +125,8 @@ function getAttempts(){
         if (tr.cells[0].innerText === '' || tr.cells[0].innerText === null || tr.cells[0].innerText === undefined) {
             return;
         }
+        hiddenInputX.value = 0;
+
         const x = Number(tr.cells[0].innerText);
         const y = Number(tr.cells[1].innerText);
         const r = Number(tr.cells[2].innerText);
@@ -141,10 +145,7 @@ $('#formParameters\\:submit').on( "click", () => {
 $('#formParameters\\:rs input').on( "click", () => {
     runGrapher().drawGraph();
 })
-canvas.addEventListener('click', (e) => {
-
-
-
+canvas.onclick = (e) => {
     let rsSelectedNumber = 0;
     let r = null;
     $('#formParameters\\:rs input').each(function(index) {
@@ -172,17 +173,16 @@ canvas.addEventListener('click', (e) => {
     const yInput = document.getElementById('formParameters:y');
     yInput.value = yClicked;
 
-    const hiddenInputX = $('#formParameters\\:hiddenX').last()[0];
-
     hiddenInputX.value = xClicked;
 
     validateYClick()
 
     $('#formParameters\\:submit')[0].click()
 
-
     setTimeout(() => {
         hiddenInputX.value = 0;
         runGrapher().drawGraph();
-    }, 400)
-});
+    }, 500)
+};
+
+
