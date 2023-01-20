@@ -135,7 +135,7 @@ function getAttempts(){
 $('#formParameters\\:submit').on( "click", () => {
     setTimeout(() => {
         runGrapher().drawGraph();
-    }, 200)
+    }, 400)
 })
 
 $('#formParameters\\:rs input').on( "click", () => {
@@ -184,5 +184,5 @@ canvas.addEventListener('click', (e) => {
     setTimeout(() => {
         hiddenInputX.value = 0;
         runGrapher().drawGraph();
-    }, 200)
+    }, 400)
 });
