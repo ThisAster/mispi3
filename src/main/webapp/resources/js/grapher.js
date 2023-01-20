@@ -93,7 +93,11 @@ function runGrapher() {
                 const x = attempt.x / maxR * k * width / 3 + width / 2;
                 const y = -attempt.y / maxR * k * height / 3 + height / 2;
 
+
                 ctx.fillStyle = (attempt.hit ? '#11ff11' : '#ff3333');
+                if(attempt.r != maxR){
+                    ctx.fillStyle = '#777';
+                }
                 ctx.beginPath();
                 ctx.arc(x, y, 5, 0, Math.PI * 2);
                 ctx.fill();
@@ -139,6 +143,8 @@ $('#formParameters\\:rs input').on( "click", () => {
 })
 canvas.addEventListener('click', (e) => {
 
+
+
     let rsSelectedNumber = 0;
     let r = null;
     $('#formParameters\\:rs input').each(function(index) {
@@ -159,12 +165,18 @@ canvas.addEventListener('click', (e) => {
     const yClicked =
         Math.round(((-2 * e.offsetY) / height + 1) * r * 1.5 * 100) / 100;
 
+    if (yClicked) {
+        document.getElementById('formParameters:submit').disable = false;
+    }
+
     const yInput = document.getElementById('formParameters:y');
     yInput.value = yClicked;
 
     const hiddenInputX = $('#formParameters\\:hiddenX').last()[0];
 
     hiddenInputX.value = xClicked;
+
+    validateY()
 
     $('#formParameters\\:submit')[0].click()
 
