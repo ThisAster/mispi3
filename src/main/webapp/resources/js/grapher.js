@@ -101,10 +101,6 @@ function runGrapher() {
                 ctx.fill();
             });
         }
-
-
-
-
     }
 
     return {
@@ -116,13 +112,13 @@ runGrapher().drawGraph();
 
 function getAttempts(){
     const attempts = [];
-    $('#maintable tbody tr').each(function(){
+    $('#maintable tbody tr').each(function() {
         const tr = this;
-        if(tr.cells.length < 6){
+        if (tr.cells.length < 6) {
             return;
         }
 
-        if(tr.cells[0].innerText === '' || tr.cells[0].innerText === null || tr.cells[0].innerText === undefined){
+        if (tr.cells[0].innerText === '' || tr.cells[0].innerText === null || tr.cells[0].innerText === undefined) {
             return;
         }
         const x = Number(tr.cells[0].innerText);
@@ -133,7 +129,6 @@ function getAttempts(){
     })
     return attempts;
 }
-
 
 $('#formParameters\\:submit').on( "click", () => {
     setTimeout(() => {
@@ -165,8 +160,6 @@ canvas.addEventListener('click', (e) => {
         Math.round(((2 * e.offsetX) / width - 1) * r * 1.5 * 100) / 100;
     const yClicked =
         Math.round(((-2 * e.offsetY) / height + 1) * r * 1.5 * 100) / 100;
-
-
 
     const yInput = document.getElementById('formParameters:y');
     yInput.value = yClicked;
