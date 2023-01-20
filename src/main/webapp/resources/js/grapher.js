@@ -1,10 +1,8 @@
 const canvas = document.getElementById("graph");
 
-inputId ='j_idt19:r'
 const width = canvas.width;
 const height = canvas.height;
 const ctx = canvas.getContext("2d");
-const points = [];
 
 function runGrapher() {
 
