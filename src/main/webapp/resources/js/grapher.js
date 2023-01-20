@@ -176,7 +176,7 @@ canvas.addEventListener('click', (e) => {
 
     hiddenInputX.value = xClicked;
 
-    validateY()
+    validateYClick()
 
     $('#formParameters\\:submit')[0].click()
 
@@ -184,5 +184,5 @@ canvas.addEventListener('click', (e) => {
     setTimeout(() => {
         hiddenInputX.value = 0;
         runGrapher().drawGraph();
-    }, 100)
+    }, 200)
 });
